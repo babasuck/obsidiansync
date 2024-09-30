@@ -386,14 +386,17 @@ Lisp: `(+ (* a x x) (* b x) c)`
 		(::const 1))) 
 		;0*x + 2*1
 ```
-Модифицируем произведение
+Модифицируем произведение:  
 ```clojure
 (defn product [expr & rest]
 	(let [normalized-exprs
-			(collapse-prod-constants
+			(collapse-prod-constants ; сворачиваем все константы
 				(cons expr rest))]
 		(if (= 1 (count normalized-exprs))
 			(first normalized-exprs)
 			(cons ::product
 				normalized-exprs))))
+
+(defn- collapse-prod-constants [exprs]
+	   (let [consts (filter constant? exprs)]))
 ```
