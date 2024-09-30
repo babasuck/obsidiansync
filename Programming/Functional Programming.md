@@ -350,5 +350,12 @@ Lisp: `(+ (* a x x) (* b x) c)`
 		expr
 		(cons ::product (cons expr rest))))
 
-
+[(fn [expr vr] (product? expr))
+ (fn [expr vr]
+	 (let [first-arg (first (args expr))
+		 rest-prod
+		 (apply product
+			 (rest (args expr)))]
+			 
+			 ))]
 ```
