@@ -356,6 +356,44 @@ Lisp: `(+ (* a x x) (* b x) c)`
 		 rest-prod
 		 (apply product
 			 (rest (args expr)))]
-			 
-			 ))]
+			 (sum
+				 (product 
+					 (diff first-arg vr) rest-prod)
+				 (product first-arg
+					 (diff rest-prod vr)))))]
+```
+Проблема: сумма, произведение
+```clojure
+(diff (sum (constant 2) (variable :x)
+		   (variable :x))) ; 2 + x
+>>
+(::sum
+	(::const 0)
+	(::const 1))		  ; 0 + 1
+
+(diff (product
+	   (constant 2)
+	   (variable :x))
+	(variable :x))        ; 2x
+
+>>
+(::sum
+	(::product
+		(::const 0)
+		(::var :x))
+	(::product
+		(::const 2)
+		(::const 1))) 
+		;0*x + 2*1
+```
+Модифицируем произведение
+```clojure
+(defn product [expr & rest]
+	(let [normalized-exprs
+			(collapse-prod-constants
+				(cons expr rest))]
+		(if (= 1 (count normalized-exprs))
+			(first normalized-exprs)
+			(cons ::product
+				normalized-exprs))))
 ```
