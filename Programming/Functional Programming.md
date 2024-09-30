@@ -314,7 +314,9 @@ Lisp: `(+ (* a x x) (* b x) c)`
 ```clojure
 (defn diff [expr vr]
 	((some (fn [rule]
-				(if ((first rule) expr vr))
-	)))
-)
+				(if ((first rule) expr vr)
+					(second rule)
+					false))
+			diff-rules)
+	))
 ```
