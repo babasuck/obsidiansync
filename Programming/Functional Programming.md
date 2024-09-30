@@ -320,3 +320,35 @@ Lisp: `(+ (* a x x) (* b x) c)`
 			diff-rules)
 	))
 ```
+
+Правила вывода для констант и переменных
+```clojure
+; константа
+[(fn [expr vr] (constant? expr)) 
+ (fn [expr vr] (constant 0))]
+; переменная дифференцирования
+[(fn [expr vr] (and (variable? expr)
+					(same-variables? expr vr)))
+					(fn [expr vr] (constant 1))]
+; другая переменная
+[(fn [expr vr] (variable? expr))
+ (fn [expr vr] (constant 0))]
+```
+Правила вывода для суммы
+```clojure
+[(fn [expr vr] (sum? expr))
+ (fn [expr vr] 
+	 (apply sum
+	  (map 
+		  #(diff % vr)
+		 (args expr))))]
+```
+Правило для произведения
+```clojure
+(defn product [expr & rest]
+	(if (empty? rest)
+		expr
+		(cons ::product (cons expr rest))))
+
+
+```
