@@ -398,5 +398,20 @@ Lisp: `(+ (* a x x) (* b x) c)`
 				normalized-exprs))))
 
 (defn- collapse-prod-constants [exprs]
-	   (let [consts (filter constant? exprs)]))
+	   (let [consts (filter constant? exprs)
+		   other-exprs
+			   (remove constant? exprs)
+		   combined-const
+			   (reduce (fn [acc entry] (* acc 
+							   (constant-value entry)))
+							   1 consts)]
+			(cond
+				(= combined-const 0)
+					(list (constant 0))
+				(= combined-const 1)
+					(if (empty? other-exprs)
+						(list (constant 1))
+						other-exprs)	
+				)					   
+				))
 ```
