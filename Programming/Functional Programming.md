@@ -411,7 +411,9 @@ Lisp: `(+ (* a x x) (* b x) c)`
 				(= combined-const 1)
 					(if (empty? other-exprs)
 						(list (constant 1))
-						other-exprs)	
+						other-exprs)
+				:default
+					(cons (constant combined-const))	
 				)					   
 				))
 ```
