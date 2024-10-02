@@ -58,4 +58,10 @@ print(numbers)
 | reverse() | Reverses the order of the list                                               |
 | sort()    | Sorts the list                                                               |
 
+## Кортежи (tuple)
+Кортеж - неизменяемый список 
+```python
+a = (1, 2)
+b = (1, )
 
+```
