@@ -6,8 +6,24 @@
 nums = [1, 2, 3]
 mixed = ['a', 1, 0.5] # можно хранить данные разного типа
 empty = []
+nested = [1, 2, [3, 4], [5]]
 
 nums[0] # 1
 nums[-1] # 3
 nums[3] # IndexError
+
+# Итерация по списку
+
+for el in nums:
+	print(el)
+
+for i in range(len(nums)):
+	print(nums[i])
+
+```
+
+*Срезы*
+```python
+l = [1, 2, 3, 4, 5, 6]
+l[2:] # [3, 4, 5, 6]
 ```
