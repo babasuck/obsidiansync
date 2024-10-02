@@ -32,12 +32,17 @@ print(text[:6])
 print(text[8:])
 print(text[:])
 print(text[::2])
-
 #мир 
 #Привет
 #мир!
 #Привет, мир!
 #Пие,мря
+
+numbers = [1, 2, 3, 4, 5] 
+del numbers[::2] 
+print(numbers)
+# [2, 4]
+
 ```
 
 | append()  | Adds an element at the end of the list                                       |
