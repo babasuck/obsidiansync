@@ -286,6 +286,37 @@ Lisp: `(+ (* a x x) (* b x) c)`
 ```
 
 
+
+### Отложенные вычисления и потоки
+
+```clojure
+(letfn [(fact [n] (reduce *' (range 1 n)))]
+  (time (fact 1000))
+  (time (map fact (range 1 1001)))
+  )
+```
+"Elapsed time: 2.779141 msecs"
+"Elapsed time: 0.014613 msecs"
+
+```clojure
+(letfn [(fact [n] (reduce *' (range 1 n)))]
+  (time (fact 1000))
+  (time (nth (map fact (range 1 1001)) 999)))
+```
+
+Последовательности
+```clojure
+(def naturals
+  (cons 1 (map inc naturals)))
+
+(def naturals
+	(lazy-seq
+		(cons 1 (map inc naturals))))
+
+```
+![[Pasted image 20241203152153.png]]
+
+
 ### Persistent Data Structures
 
 *Persistent* - постоянный, неизменяемый
