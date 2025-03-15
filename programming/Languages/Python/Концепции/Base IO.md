@@ -1,4 +1,3 @@
-
 ## Ввод
 ```python
 def input(*args, **kwargs): # real signature unknown  
@@ -8,7 +7,6 @@ The prompt string, if given, is printed to standard output without a trailing ne
 """
 name = input("What`s your name?")
 ```
-
 ## Вывод
 ```python
 def print(self, *args, sep=' ', end='\n', file=None)

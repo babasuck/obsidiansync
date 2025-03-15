@@ -15,6 +15,10 @@ https://github.com/python/cpython
 [[PEP8]] - стандарт как должен выглядеть стилистически код
 [[Base IO]]
 
+## Typing
+
+[[Type hints]]
+[[Pydantic]]
 
 ## Концепции
 
